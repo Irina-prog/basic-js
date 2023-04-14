@@ -15,13 +15,13 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function isMAC48Address(n) {
-  const groups = n.split('-');
-  if (groups.length !== 6) {
+  const groups = n.split('-'); //получаем массив групп чисел
+  if (groups.length !== 6) { //если не ровно 6 групп то false -не верный мак адрес
     return false;
   }
-  return groups.every(i => {
-    const number = parseInt(i, 16);
-    return number >= 0 && number <= 0xFF;
+  return groups.every(i => {  //проверяем каждую группу чисел
+    const number = parseInt(i, 16); // приводим к числу 16-ричную строчку - выдает 10-тичную
+    return number >= 0 && number <= 0xFF;  // сравнить само число FF(255) самое большое число которое занимает 2 разряда в 16-ой записи || либо можно было проверять на длину чисел в группе что равна 2
   })
 }
 module.exports = {

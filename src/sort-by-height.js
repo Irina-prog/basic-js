@@ -12,18 +12,20 @@ const { NotImplementedError } = require('../extensions/index.js');
  * The result should be [-1, 150, 160, 170, -1, -1, 180, 190]
  */
 function sortByHeight(arr) {
-  const minusOneIndexes = [];
-  let index = -1;
-  while(true) {
-    index = arr.indexOf(-1, index + 1)
-    if (index < 0) {
+  const minusOneIndexes = []; // индексы минус единичек
+  let index = -1; // -1 чтобы первый поиск шел с нуля
+  while (true) {
+    index = arr.indexOf(-1, index + 1)  // первым параметров кого искать а вторым с какого индекса начинать
+    if (index < 0) { //если не нашел минус единичку - выйти из цикла
       break;
     }
-    minusOneIndexes.push(index);
+    minusOneIndexes.push(index); //закидываем индекс единички в массив
   }
-  const result = arr.filter(i => i !== -1).sort((a, b) => a - b);
-  for(const index of minusOneIndexes){
-    result.splice(index, 0, -1);
+  const result = arr
+    .filter(i => i !== -1)  //отфильтровываем все -1 чтобы их не было в исходном массиве
+    .sort((a, b) => a - b);  // оставшиеся числа сортируем
+  for (const index of minusOneIndexes) {  // циклом фор проходимся по массиву с индексами -1
+    result.splice(index, 0, -1); // и по их индексу вставляем в сортированный массив
   }
   return result;
 }

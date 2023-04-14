@@ -13,12 +13,12 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function getSumOfDigits(n) {
-  const digits = n.toString().split('');
-  if (digits.length === 1) {
+  const digits = n.toString().split(''); // преобразуется в строку и разделяется по символьно
+  if (digits.length === 1) { //если только одна цифра ее и возращаем- не нужно суммировать
     return n;
   }
-  return getSumOfDigits(digits.reduce((sum, item) => sum += Number(item), 0));
-}
+  return getSumOfDigits(digits.reduce((sum, item) => sum += Number(item), 0)); // рекурсивно вызывать пока сумма цифр не будет состоять из одной цифры
+} //вызвали еще раз нашу функцию но на вход ей передали результат сложения цифр
 
 module.exports = {
   getSumOfDigits

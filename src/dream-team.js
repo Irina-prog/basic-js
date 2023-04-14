@@ -14,10 +14,14 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function createDreamTeam(arr) {
-  if (!Array.isArray(arr)){
+  if (!Array.isArray(arr)){ // проверили массив ли пришел
     return false;
   }
-  return arr.filter(elem => typeof elem === 'string').map((element) => element.trim()[0].toUpperCase()).sort().join('');
+  return arr
+  .filter(elem => typeof elem === 'string') // отфильтровали только строчки
+  .map((element) => element.trim()[0].toUpperCase())  // обрезали пробелы и слева и справа
+  .sort()  //сортирнули
+  .join('');  //соединили
 }
 
 module.exports = {
